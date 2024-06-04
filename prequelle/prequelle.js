@@ -1,5 +1,13 @@
 import { fetchData } from "../fetch.js";
 
+fetchData('/Prequelle').then((data) => {
+    console.log(data);
+    localStorage.setItem('Prequelle', JSON.stringify(data));
+});
+
+const songs = JSON.parse(localStorage.getItem('Prequelle'));
+
+
 const title = document.getElementById('music-title'),
     artist = document.getElementById('music-artist'),
     currentTimeEl = document.getElementById('current-time'),
@@ -8,70 +16,11 @@ const title = document.getElementById('music-title'),
     playerProgress = document.getElementById('player-progress'),
     prevBtn = document.getElementById('prev'),
     nextBtn = document.getElementById('next'),
-    playBtn = document.getElementById('play'),
-    background = document.getElementById('bg-img');
+    playBtn = document.getElementById('play');
 
 const music = new Audio();
 
-fetchData('/Prequelle').then((data) => {
-    console.log(data)
-    localStorage.setItem('Prequelle', JSON.stringify(data))
-})
 
-const songs = JSON.parse(localStorage.getItem('Prequelle'));
-
-// const songs = [
-//     {
-//         path: '../albums/Prequelle/Ashes.mp3',
-//         displayName: 'Ashes',
-//         artist: 'Ghost',
-//     },
-//     {
-//         path: '../albums/Prequelle/Rats.mp3',
-//         displayName: 'Rats',
-//         artist: 'Ghost',
-//     },
-//     {
-//         path: '../albums/Prequelle/Faith.mp3',
-//         displayName: 'Faith',
-//         artist: 'Ghost',
-//     },
-//     {
-//         path: '../albums/Prequelle/See The Light.mp3',
-//         displayName: 'See The Light',
-//         artist: 'Ghost',
-//     },
-//     {
-//         path: '../albums/Prequelle/Miasma.mp3',
-//         displayName: 'Miasma',
-//         artist: 'Ghost',
-//     },
-//     {
-//         path: '../albums/Prequelle/Dance Macabre.mp3',
-//         displayName: 'Dance Macabre',
-//         artist: 'Ghost',
-//     },
-//     {
-//         path: '../albums/Prequelle/Pro Memoria.mp3',
-//         displayName: 'Pro Memoria',
-//         artist: 'Ghost',
-//     },
-//     {
-//         path: '../albums/Prequelle/Witch Image.mp3',
-//         displayName: 'Witch Image',
-//         artist: 'Ghost',
-//     },
-//     {
-//         path: '../albums/Prequelle/Helvetesfonster.mp3',
-//         displayName: 'Helvetesfönster',
-//         artist: 'Ghost',
-//     },
-//     {
-//         path: '../albums/Prequelle/Life Eternal.mp3',
-//         displayName: 'Life Eternal',
-//         artist: 'Ghost',
-//     },
-// ]
 
 let musicIndex = 0;
 let isPlaying = false;
@@ -102,6 +51,7 @@ function pauseMusic() {
 function loadMusic(song) {
     music.src = song.path;
     title.textContent = song.displayName;
+    artist.textContent = song.artist;
 };
 
 function changeMusic(direction) {

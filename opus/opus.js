@@ -1,5 +1,14 @@
 import { fetchData } from "../fetch.js";
 
+fetchData('/Opus_Eponymous').then((data) => {
+    console.log(data);
+    localStorage.setItem('Opus_Eponymous', JSON.stringify(data));
+});
+
+const songs = JSON.parse(localStorage.getItem('Opus_Eponymous'));
+
+
+
 const title = document.getElementById('music-title'),
     artist = document.getElementById('music-artist'),
     currentTimeEl = document.getElementById('current-time'),
@@ -10,65 +19,10 @@ const title = document.getElementById('music-title'),
     nextBtn = document.getElementById('next'),
     playBtn = document.getElementById('play');
 
+
+
 // Création de l'élément audio
 const music = new Audio();
-
-// Tableau des musiques avec chemin, titre et artiste
-// const songs = [
-//     {
-//         path: '../albums/Opus_Eponymous/Conc.flac',
-//         displayName: 'Con Clavi Con Dio',
-//         artist: 'Ghost',
-//     },
-//     {
-//         path: '../albums/Opus_Eponymous/Death Knell.flac',
-//         displayName: 'Death Kneel',
-//         artist: 'Ghost',
-//     },
-//     {
-//         path: '../albums/Opus_Eponymous/Deus Culpa.flac',
-//         displayName: 'Deus Culpa',
-//         artist: 'Ghost',
-//     },
-//     {
-//         path: '../albums/Opus_Eponymous/Elizabeth.flac',
-//         displayName: 'Elizabeth',
-//         artist: 'Ghost',
-//     },
-//     {
-//         path: '../albums/Opus_Eponymous/Genesis.flac',
-//         displayName: 'Genesis',
-//         artist: 'Ghost',
-//     },
-//     {
-//         path: '../albums/Opus_Eponymous/Prime Mover.flac',
-//         displayName: 'Prime Mover',
-//         artist: 'Ghost',
-//     },
-//     {
-//         path: '../albums/Opus_Eponymous/Ritual.flac',
-//         displayName: 'Ritual',
-//         artist: 'Ghost',
-//     },
-//     {
-//         path: '../albums/Opus_Eponymous/Satan Prayer.flac',
-//         displayName: 'Satan Prayer',
-//         artist: 'Ghost',
-//     },
-//     {
-//         path: '../albums/Opus_Eponymous/Stand By Him.flac',
-//         displayName: 'Stand By Him',
-//         artist: 'Ghost',
-//     },
-// ]
-
-fetchData('/Opus_Eponymous').then((data) => {
-    console.log(data)
-    localStorage.setItem('Opus_Eponymous', JSON.stringify(data))
-})
-
-const songs = JSON.parse(localStorage.getItem('Opus_Eponymous'));
-
 
 // Variables pour suivre l'index de la musique en cours et l'état play/pause
 let musicIndex = 0;

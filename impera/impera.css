@@ -3,9 +3,6 @@
     padding: 0;
 }
 
-html {
-    box-sizing: border-box;
-}
 
 body {
     display: flex;
@@ -126,7 +123,6 @@ h3 {
     font-size: 30px;
     margin-right: 30px;
     cursor: pointer;
-    /* user-select: none; */
     transition: all 0.3s ease;
 }
 

@@ -1,5 +1,13 @@
 import { fetchData } from "../fetch.js";
 
+fetchData('/Infestissumam').then((data) => {
+    console.log(data)
+    localStorage.setItem('Infestissumam', JSON.stringify(data))
+})
+
+const songs = JSON.parse(localStorage.getItem('Infestissumam'));
+
+
 const title = document.getElementById('music-title'),
     artist = document.getElementById('music-artist'),
     currentTimeEl = document.getElementById('current-time'),
@@ -8,70 +16,11 @@ const title = document.getElementById('music-title'),
     playerProgress = document.getElementById('player-progress'),
     prevBtn = document.getElementById('prev'),
     nextBtn = document.getElementById('next'),
-    playBtn = document.getElementById('play'),
-    background = document.getElementById('bg-img');
+    playBtn = document.getElementById('play');
+
 
 const music = new Audio();
 
-// const songs = [
-//     {
-//         path: '../albums/Infestissumam/Infestissumam.flac',
-//         displayName: 'Infestissumam',
-//         artist: 'Ghost',
-//     },
-//     {
-//         path: '../albums/Infestissumam/Per Aspera Ad Inferi.flac',
-//         displayName: 'Per Aspera Ad Inferi',
-//         artist: 'Ghost',
-//     },
-//     {
-//         path: '../albums/Infestissumam/Secular Haze.flac',
-//         displayName: 'Secular Haze',
-//         artist: 'Ghost',
-//     },
-//     {
-//         path: '../albums/Infestissumam/Jigolo Har Migiddo.flac',
-//         displayName: 'Jigolo Har Miggido',
-//         artist: 'Ghost',
-//     },
-//     {
-//         path: '../albums/Infestissumam/Ghuleh , Zombie Queen.flac',
-//         displayName: 'Ghuleh / Zombie Queen',
-//         artist: 'Ghost',
-//     },
-//     {
-//         path: '../albums/Infestissumam/Year Zero.flac',
-//         displayName: 'Year Zero',
-//         artist: 'Ghost',
-//     },
-//     {
-//         path: '../albums/Infestissumam/Body And Blood.flac',
-//         displayName: 'Body And Blood',
-//         artist: 'Ghost',
-//     },
-//     {
-//         path: '../albums/Infestissumam/Idolatrine.flac',
-//         displayName: 'Idolatrine',
-//         artist: 'Ghost',
-//     },
-//     {
-//         path: '../albums/Infestissumam/Depth of Satans Eyes.flac',
-//         displayName: 'Depth of Satan\'s Eyes',
-//         artist: 'Ghost',
-//     },
-//     {
-//         path: '../albums/Infestissumam/Monstrance Clock.flac',
-//         displayName: 'Monstrance Clock',
-//         artist: 'Ghost',
-//     },
-// ]
-
-fetchData('/Infestissumam').then((data) => {
-    console.log(data)
-    localStorage.setItem('Infestissumam', JSON.stringify(data))
-})
-
-const songs = JSON.parse(localStorage.getItem('Infestissumam'));
 
 let musicIndex = 0;
 let isPlaying = false;
@@ -102,6 +51,7 @@ function pauseMusic() {
 function loadMusic(song) {
     music.src = song.path;
     title.textContent = song.displayName;
+    artist.textContent = song.artist
 };
 
 function changeMusic(direction) {
@@ -110,15 +60,6 @@ function changeMusic(direction) {
     playMusic();
 };
 
-// function updateProgressBar() {
-//     const {duration, currentTime} = music;
-//     const progressPercent = (currentTime / duration) * 100
-//     progress.style.width = `${progressPercent}%`;
-
-//     const formatTime = (time) => String(Math.floor(time)).padStart(2, '0');
-//     durationEl.textContent = `${formatTime(duration / 60)}:${formatTime(duration % 60)}`;
-//     currentTimeEl.textContent = `${formatTime(currentTime / 60)}:${formatTime(currentTime % 60)}`;
-// };
 
 function updateProgressBar() {
     const { duration, currentTime } = music;

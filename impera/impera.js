@@ -1,5 +1,13 @@
 import { fetchData } from "../fetch.js";
 
+fetchData('/Impera').then((data) => {
+    console.log(data);
+    localStorage.setItem('Impera', JSON.stringify(data));
+});
+
+const songs = JSON.parse(localStorage.getItem('Impera'));
+
+
 const title = document.getElementById('music-title'),
     artist = document.getElementById('music-artist'),
     currentTimeEl = document.getElementById('current-time'),
@@ -8,61 +16,10 @@ const title = document.getElementById('music-title'),
     playerProgress = document.getElementById('player-progress'),
     prevBtn = document.getElementById('prev'),
     nextBtn = document.getElementById('next'),
-    playBtn = document.getElementById('play'),
-    background = document.getElementById('bg-img');
+    playBtn = document.getElementById('play');
 
 const music = new Audio();
 
-
-fetchData('/Impera').then((data) => {
-    console.log(data);
-    localStorage.setItem('Impera', JSON.stringify(data));
-});
-
-const songs = JSON.parse(localStorage.getItem('Impera'));
-
-// const songs = [
-//     {
-//         path: '../albums/Impera/Imperium.mp3',
-//         displayName: 'Imperium',
-//         artist: 'Ghost',
-//     },
-//     {
-//         path: '../albums/Impera/Kaisarion.mp3',
-//         displayName: 'Kaisarion',
-//         artist: 'Ghost',
-//     },
-//     {
-//         path: '../albums/Impera/Spillways.mp3',
-//         displayName: 'Spillways',
-//         artist: 'Ghost',
-//     },
-//     {
-//         path: '../albums/Impera/Call Me Little Sunshine.mp3',
-//         displayName: 'Call Me Little Sunshine',
-//         artist: 'Ghost',
-//     },
-//     {
-//         path: '../albums/Impera/Hunters Moon.mp3',
-//         displayName: 'Hunter\'s Moon',
-//         artist: 'Ghost',
-//     },
-//     {
-//         path: '../albums/Impera/Watcher In The Sky.mp3',
-//         displayName: 'Watcher In The Sky',
-//         artist: 'Ghost',
-//     },
-//     {
-//         path: '../albums/Impera/Twenties.mp3',
-//         displayName: 'Twenties',
-//         artist: 'Ghost',
-//     },
-//     {
-//         path: '../albums/Impera/Respite On The Spitalfields.mp3',
-//         displayName: 'Respite On The Spitalfields',
-//         artist: 'Ghost',
-//     },
-// ]
 
 let musicIndex = 0;
 let isPlaying = false;
@@ -93,6 +50,7 @@ function pauseMusic() {
 function loadMusic(song) {
     music.src = song.path;
     title.textContent = song.displayName;
+    artist.textContent = song.artist
 };
 
 function changeMusic(direction) {
@@ -101,15 +59,6 @@ function changeMusic(direction) {
     playMusic();
 };
 
-// function updateProgressBar() {
-//     const {duration, currentTime} = music;
-//     const progressPercent = (currentTime / duration) * 100
-//     progress.style.width = `${progressPercent}%`;
-
-//     const formatTime = (time) => String(Math.floor(time)).padStart(2, '0');
-//     durationEl.textContent = `${formatTime(duration / 60)}:${formatTime(duration % 60)}`;
-//     currentTimeEl.textContent = `${formatTime(currentTime / 60)}:${formatTime(currentTime % 60)}`;
-// };
 
 function updateProgressBar() {
     const { duration, currentTime } = music;
