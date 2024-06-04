@@ -1,0 +1,141 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    margin-top: 15px;
+}
+
+#logo {
+    display: flex;
+    justify-content: center;
+    height: 25vh;
+    width: 100%;
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+    font-size: 7vh;
+    font-family: 'metal mania';
+    color: whitesmoke;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background-image: url(./img/Ghost_background.jpg);
+    height: 100vh;
+    width: 100vw;
+    background-position:center;
+    background-size: cover;
+    min-width: 360px;
+}
+
+
+
+a {
+    color: white;
+    text-decoration: none;
+    font-family: 'metal mania';
+}
+
+
+.albums {
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+}
+
+p {
+    text-align: center;
+}
+
+.album-cover:hover {
+    transform: translate(0, -25px);
+    box-shadow: 10px 0px 25px 5px #313e50, -10px 5px 25px 5px #313e50;
+    transition: all 0.3s ease;
+}
+
+
+#opus, #infest, #meliora, #prequelle, #impera {
+    margin-right: 30px;
+}
+
+#opus p, #infest p, #meliora p, #prequelle p, #impera p {
+    font-family: 'metal mania';
+    font-size: 2.5vh;
+    color: white;
+}
+
+#opus img, #infest img, #meliora img, #prequelle img, #impera img {
+    height: 250px;
+    border-radius: 50%;
+}
+
+
+#footer {
+    font-family: 'metal mania';
+    font-size: 2vh;
+    color: whitesmoke;
+    position: absolute;
+    bottom: 0;
+}
+
+
+
+@media (max-width: 1368px) {
+    h1 {
+        font-size: 5vh;
+    }
+    #logo {
+        height: 20vh;
+        width: 100%;
+    }
+    #opus p, #infest p, #meliora p, #prequelle p, #impera p {
+        font-family: 'metal mania';
+        font-size: 2vh;
+        color: white;
+    }
+    
+    #opus img, #infest img, #meliora img, #prequelle img, #impera img {
+        height: 200px;
+    }
+}
+
+@media (max-width: 1100px) {
+    .albums {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 690px) {
+    #opus, #infest, #meliora, #prequelle, #impera {
+        margin-right: 10px;
+    }
+    
+    #opus p, #infest p, #meliora p, #prequelle p, #impera p {
+        font-family: 'metal mania';
+        font-size: 1.7vh;
+        color: white;
+    }
+    
+    #opus img, #infest img, #meliora img, #prequelle img, #impera img {
+        height: 150px;
+        border-radius: 50%;
+    }
+    #logo {
+        height: 15vh;
+    }
+    h1 {
+        font-size: 4vh;
+    }
+    #footer {
+        font-size:1.3vh ;
+    }
+}
