@@ -16,3 +16,5 @@ export async function fetchData(path) {
         throw new Error('Erreur', {cause:result});
     };
 };
+
+// e
